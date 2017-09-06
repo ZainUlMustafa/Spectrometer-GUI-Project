@@ -1,10 +1,24 @@
-'''Produced by Sourcode'''
+''' Produced by Sourcode '''
+''' v. 1.2 '''
+
 import serial
+from serial import SerialException
+
+
+def exceptionCheckPort(comPort):
+    global ser
+    try:
+        ser = serial.Serial(comPort, 9600)
+        return True
+    except SerialException:
+        return False
+
 
 def serialCommSetup(comPort):
     global ser
-    ser = serial.Serial(comPort, 9600)
+    #ser = serial.Serial(comPort, 9600)
     print 'COM Port: ' + comPort + ' || BAUD: ' + str(9600)
+
     
 def importData(receiveString, count):
     global ser
@@ -13,9 +27,9 @@ def importData(receiveString, count):
     for count in range(21):
         #receiveString.append(count+1)
         receiveString.append(str(ser.read()))
-        print count
-        #print ser.read()
+        print receiveString[count] 
     return count
+
 
 def closeSerial():
     global ser
