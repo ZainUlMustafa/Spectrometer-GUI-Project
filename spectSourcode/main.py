@@ -1,4 +1,5 @@
 '''Python 27'''
+from itertools import count
 '''Produced by Sourcode'''
 
 # Steps:
@@ -18,6 +19,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import atexit
+import time
+import _csv as csv
 from Tkinter import*
 from comm import *
 from serial import SerialException
@@ -94,9 +97,14 @@ def mainScreen():
     saveDataButton = Button(mainFrame, text='Save data')
     saveDataButton.config(command=lambda: saveDataToFile(saveDataButton))
     
+    readFileDirButton = Button(mainFrame, text='Read editted file')
+    readFileDirButton.config(command=lambda: readFileFromDir(readFileDirButton))
+    
     # Making a grid layout
+    time.sleep(3)
     receiveButton.grid(row=0, column=0)
     saveDataButton.grid(row=1, column=0)
+    readFileDirButton.grid(row=2, column=0)
     
 
 def receiveFromSerial(receiveButton):
@@ -107,18 +115,34 @@ def receiveFromSerial(receiveButton):
 
 def saveDataToFile(saveDataButton):
     global count
-    print 'saveData button works'
+    print 'saveDataButton works'
     print count
     if count == 20:
         print 'Data saving started...'
         # Save received data into received.txt
         csv_receive_info = open('received.txt', 'w')
         for i in range(count):
-            csv_receive_info.write(str(receiveString[i]) + '\n')
+            csv_receive_info.write(str(receiveString[i]) + ',' + str(int(receiveString[i]) **2) + '\n')
         print 'Data saving complete'
+        csv_receive_info.close()
     else:
         print 'Data not completely received, cannot save!'
     
+
+def readFileFromDir(readFileDirButton):
+    x, y = [], []
+    print 'readFileDirButton works'
+    csv_file_dir = open('received.txt', 'r')
+    fileDirReader = csv.reader(csv_file_dir, delimiter=',')
+    for row in fileDirReader:
+        x.append(row[0])
+        y.append(row[1])
+    csv_file_dir.close()
+    np_x = np.array(x)
+    np_y = np.array(y)
+    plt.scatter(np_x, np_y)
+    plt.show()
+
 
 def rPress():
     global commRadioVar
