@@ -3,5 +3,8 @@ This project is designed for a custom built and redesigned spectrometer by NUST 
 
 NOTE: This project isn't complete, I am currently working on it. This repository is shared here just to make it available to all team members of this project.
 
-Updated 5 September 2017
+Update 6 September 2017
+File received over serial port is error free with some added delay in the script to allow the serial receiver to get reset.
+
+Update 5 September 2017
 Currently the serial communication is built successfully. Filing and saving raw data into the received.txt is completed but will not perfectly work.
