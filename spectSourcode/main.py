@@ -2,20 +2,6 @@
 ''' Produced by Sourcode '''
 ''' v. 1.5.1 '''
 
-# Steps:
-''' Serial Port Setup and Connection Establishment '''
-# 1. Create setup window
-# 2. Setup radio button for com port
-# 3. Make connection with com port prior to radio button selected
-# 4. After comm.py has setup the Serial
-# 5. Clear the current radio button, and create control buttons for Spectrometer
-# 6. Click readSerial button to begin reading from Serial
-''' Filing, Advanced Calculations, and Plotting '''
-# 7. Save the read data into a .txt formatted file
-# 8. After manual checking, click readFile button to start reading the file
-# 9. Perform some data manipulations and save coordinates into dynamic arrays
-# 10. Plot the graph
-
 import serial.tools.list_ports
 import numpy as np
 import matplotlib.pyplot as plt
@@ -41,7 +27,6 @@ root.iconbitmap('D:/Sciencestic Knowledgebase/logos/zams16-17.ico')
 root.minsize(450, 200)
 receiveString = []
 ser = serial.Serial
-#portName = 'COM3'
 
 
 def setupComm():
@@ -82,18 +67,6 @@ def commSelection():
     # so whatever you will have to do with rSelect, you will use commRadioVar
     # e.g. get the radio button current state (selected or unselected)? use commRadioVar 
     commRadioVar = StringVar()
-    
-    '''
-    # Exception check to verify if com port is available
-    try:
-        ser = serial.Serial(portName, 9600)
-        connection = True
-    except SerialException:
-        connection = False
-    
-    # Exception returns a connection boolean result
-    # so you can take relevant actions
-    '''
     
     if connection == True:
         # Listing all available ports on GUI
