@@ -23,7 +23,6 @@ atexit.register(exitHandler)
 
 root = Tk()
 root.title('Spectrometer Serial Data Plotter')
-root.iconbitmap('D:/Sciencestic Knowledgebase/logos/zams16-17.ico')
 root.minsize(450, 200)
 receiveString = []
 ser = serial.Serial
